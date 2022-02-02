@@ -101,3 +101,13 @@ passwd (ex: 1)
 ```
 
 ![WhatsApp Image 2022-02-02 at 3 17 13 PM](https://user-images.githubusercontent.com/93044506/152111406-e25073cd-9d72-4758-9ac3-31f6ad2536c7.jpeg)
+
+kemudian masuk ke directory
+
+```markdown
+cd ~/ansible/tubes
+```
+
+buat hosts dan menambahkan script
+
+![WhatsApp Image 2022-02-02 at 3 41 51 PM](https://user-images.githubusercontent.com/93044506/152113425-03d40d3c-4c7e-477b-bd2f-9a6d55be192a.jpeg)
