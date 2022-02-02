@@ -94,3 +94,10 @@ kemudian restart ssh
 service sshd restart
 ```
 
+setting passowrd tiap containers
+
+```markdown
+passwd (ex: 1)
+```
+
+![WhatsApp Image 2022-02-02 at 3 17 13 PM](https://user-images.githubusercontent.com/93044506/152111406-e25073cd-9d72-4758-9ac3-31f6ad2536c7.jpeg)
