@@ -131,3 +131,108 @@ roles:
 
 
 
+buat main.yml di roles/db/tasks dan menambahkan script konfigurasi
+
+```markdown
+---
+- name: delete apt chache
+      become: yes
+      become_user: root
+      become_method: su
+      command: rm -vf /var/lib/apt/lists/*
+- name: install mariadb
+      become: yes
+      become_user: root
+      become_method: su
+      apt: name={{ item }} state=latest update_cache=true
+      with_items:
+       - python
+       - mariadb-server
+       - python-mysqldb
+       - python-pymysql
+
+- name: Stop MySQL
+      service: name=mysqld state=stopped
+
+- name: set environment variables
+      shell: systemctl set-environment MYSQLD_OPTS="--skip-grant-tables"
+
+- name: Start MySQL
+      service: name=mysqld state=started
+
+- name: sql query
+      command:  mysql -u root --execute="UPDATE mysql.user SET authentication_string = PASSWORD('{{ password }}') WHERE User = 'root' AND Host = 'localhost';"
+      
+- name: sql query flush
+      command:  mysql -u root --execute="FLUSH PRIVILEGES"
+      
+- name: Stop MySQL
+      service: name=mysqld state=stopped
+      
+- name: unset environment variables
+      shell: systemctl unset-environment MYSQLD_OPTS
+      
+- name: Start MySQL
+      service: name=mysqld state=started
+      
+- name: Create user for mysql
+      command:  mysql -u root --execute="CREATE USER IF NOT EXISTS '{{ username }}'@'localhost' IDENTIFIED BY '{{ password }}';"
+
+- name: GRANT ALL PRIVILEGES to user {{username}}
+      command:  mysql -u root --execute="GRANT ALL PRIVILEGES ON * . * TO '{{ username }}'@'localhost';"
+
+- name: Create user for remote mysql
+      command:  mysql -u root --execute="CREATE USER IF NOT EXISTS '{{ username }}'@'%' IDENTIFIED BY '{{ password }}';"
+
+- name: GRANT ALL PRIVILEGES to remote user {{username}}
+      command:  mysql -u root --execute="GRANT ALL PRIVILEGES ON * . * TO '{{ username }}'@'%';"
+      
+- name: sql query flush
+      command:  mysql -u root --execute="FLUSH PRIVILEGES"
+      
+- name: Create DB Landing
+      command:  mysql -u root --execute="CREATE DATABASE IF NOT EXISTS `landing`;"
+
+- name: Create DB blog
+      command:  mysql -u root --execute="CREATE DATABASE IF NOT EXISTS `blog`;"
+
+- name: Create DB app
+      command:  mysql -u root --execute="CREATE DATABASE IF NOT EXISTS `app`;"
+
+- name: Copy .my.cnf file with root password credentials
+      template: 
+        src=templates/my.cnf 
+        dest=/etc/mysql/mariadb.conf.d/50-server.cnf
+      notify: restart mysql
+```
+
+
+
+![WhatsApp Image 2022-02-02 at 4 01 34 PM](https://user-images.githubusercontent.com/93044506/152115952-8b6190ec-24bf-46ec-9968-37ae2df479de.jpeg)
+
+buat my.cnf di roles/db/templates dan tambhkan script configuration
+
+```markdown
+nano roles/db/templates/my.cnf
+```
+
+![WhatsApp Image 2022-02-02 at 4 03 18 PM](https://user-images.githubusercontent.com/93044506/152115957-0dec1d81-11a2-4cca-9112-dddc597aec27.jpeg)
+
+
+
+buat main.yml di roles/db/handlers dan tambahkan script konfigurasi
+
+```markdown
+nano roles/db/handlers/main.yml
+```
+
+![WhatsApp Image 2022-02-02 at 4 04 11 PM](https://user-images.githubusercontent.com/93044506/152115963-a6bfb872-89d4-4efc-b2d5-ff70bae8079d.jpeg)
+
+jalankan perintah
+
+```markdown
+ansible-playbook -i hosts install-mariadb.yml -k
+```
+
+![WhatsApp Image 2022-02-02 at 4 04 51 PM](https://user-images.githubusercontent.com/93044506/152115964-4cb94d87-2a81-4927-b377-8b3f57d743e0.jpeg)
+
