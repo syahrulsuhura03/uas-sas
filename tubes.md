@@ -50,8 +50,8 @@ echo "lxc.start.auto = 1" >> /var/lib/lxc/lxc_php7_6/config
 
 setting ip static tiap containers
 
-![WhatsApp Image 2022-02-02 at 2.06.28 PM](C:\Users\syahrul suhura\Pictures\WhatsApp Image 2022-02-02 at 2.06.28 PM.jpeg)
+![WhatsApp Image 2022-02-02 at 2 05 53 PM](https://user-images.githubusercontent.com/93044506/152105332-dabe174a-41d6-4cec-af4e-4db55ff68411.jpeg)
 
 
 
-![WhatsApp Image 2022-02-02 at 2.05.53 PM](C:\Users\syahrul suhura\Pictures\WhatsApp Image 2022-02-02 at 2.05.53 PM.jpeg)
+![WhatsApp Image 2022-02-02 at 2 06 28 PM](https://user-images.githubusercontent.com/93044506/152105340-b93a0ecd-8961-4d67-8854-a2ba16d4a3fb.jpeg)
