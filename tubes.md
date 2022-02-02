@@ -64,3 +64,33 @@ nano /etc/hosts
 
 ![WhatsApp Image 2022-02-02 at 2 36 53 PM](https://user-images.githubusercontent.com/93044506/152106000-0d74e4bb-b014-44ed-a079-ee9561d96b87.jpeg)
 
+
+
+install ssh server
+
+```markdown
+apt install openssh-server
+```
+
+![WhatsApp Image 2022-02-02 at 2 44 19 PM](https://user-images.githubusercontent.com/93044506/152106876-d95ebbd1-a4cb-4855-8375-5c0c985c7ed7.jpeg)
+
+
+
+setting 
+
+```markdown
+nano /etc/ssh/sshd_config
+
+# setting config
+PermitRootLogin yes
+RSAAuthentication yes
+```
+
+![WhatsApp Image 2022-02-02 at 2 47 03 PM](https://user-images.githubusercontent.com/93044506/152106880-1fb76fd1-8146-4a3d-85d6-f8eb3142b053.jpeg)
+
+kemudian restart ssh
+
+```markdown
+service sshd restart
+```
+
