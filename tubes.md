@@ -1,4 +1,4 @@
-Install Ansible untuk hosts ubuntu server
+1. Install Ansible untuk hosts ubuntu server
 
 ```markdown
 sudo apt install ansible sshpass
@@ -10,7 +10,7 @@ Buat directory
 mkdir -p ~/ansible/tubes
 ```
 
-Buat lxc_db_server, lxc_php5_1, lxc_php5_2, lxc_php7_1, lxc_php7_2, lxc_php7_3, lxc_php7_4, lxc_php7_5 and lxc_php7_6
+2. Buat lxc_db_server, lxc_php5_1, lxc_php5_2, lxc_php7_1, lxc_php7_2, lxc_php7_3, lxc_php7_4, lxc_php7_5 and lxc_php7_6
 
 ```markdown
 lxc-create -n lxc_db_server -t download -- --dist debian --release buster --arch amd64 --force-cache --no-validate --server images.linuxcontainers.org
@@ -111,3 +111,23 @@ cd ~/ansible/tubes
 buat hosts dan menambahkan script
 
 ![WhatsApp Image 2022-02-02 at 3 41 51 PM](https://user-images.githubusercontent.com/93044506/152113425-03d40d3c-4c7e-477b-bd2f-9a6d55be192a.jpeg)
+
+
+
+3. install mariadb.yml file dan konfigurasi
+
+```markdown
+hosts: database
+vars:
+  username: 'wahid'
+  password: '12'
+  domain: 'lxc_mariadb.dev'
+roles:
+   - db
+   - pma
+```
+
+![WhatsApp Image 2022-02-02 at 3 46 29 PM](https://user-images.githubusercontent.com/93044506/152113979-b27d1928-e0f5-4300-a7f0-c73e72d30d72.jpeg)
+
+
+
