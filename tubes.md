@@ -55,3 +55,12 @@ setting ip static tiap containers
 
 
 ![WhatsApp Image 2022-02-02 at 2 06 28 PM](https://user-images.githubusercontent.com/93044506/152105340-b93a0ecd-8961-4d67-8854-a2ba16d4a3fb.jpeg)
+
+setting hosts dan menambahkan ip 
+
+```markdown
+nano /etc/hosts
+```
+
+![WhatsApp Image 2022-02-02 at 2 36 53 PM](https://user-images.githubusercontent.com/93044506/152106000-0d74e4bb-b014-44ed-a079-ee9561d96b87.jpeg)
+
